@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
+import os
 import requests
 import nest_asyncio
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, CallbackContext, CallbackQueryHandler, MessageHandler, filters
+
+bot_telegram = os.getenv("bot_telegram")
 
 nest_asyncio.apply()
 
