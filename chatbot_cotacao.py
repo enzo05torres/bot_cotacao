@@ -4,9 +4,6 @@ import nest_asyncio
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Application, CommandHandler, CallbackContext, CallbackQueryHandler, MessageHandler, filters
 
-from google.colab import userdata
-bot_telegram = userdata.get('bot_telegram')
-
 nest_asyncio.apply()
 
 # Dicionário para armazenar os dados do usuário (moeda de origem e destino)
