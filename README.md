@@ -6,3 +6,5 @@ Selecionar a moeda de origem e destino para conversão
 Informar um valor e receber a conversão em tempo real
 Botões interativos para facilitar a navegação
 Possibilidade de realizar novas conversões rapidamente
+
+Acesse esse link para testar o bot: https://t.me/projetocotacaobot
