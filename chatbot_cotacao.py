@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import os
 import requests
 import nest_asyncio
@@ -9,7 +8,7 @@ bot_telegram = os.getenv("bot_telegram")
 
 nest_asyncio.apply()
 
-# Dicionário para armazenar os dados do usuário (moeda de origem e destino)
+# Dicionário para armazenar os dados do usuário.
 user_data = {}
 
 # Função para obter a taxa de conversão
@@ -23,7 +22,7 @@ async def obter_taxa(moeda_origem: str, moeda_destino: str):
     else:
         return None
 
-# Comando /start para iniciar a conversão
+# /start para iniciar a conversão
 async def start(update: Update, context: CallbackContext) -> None:
     keyboard = [
         [InlineKeyboardButton("Real (BRL)", callback_data='origem-BRL')],
@@ -97,7 +96,7 @@ async def receber_valor(update: Update, context: CallbackContext) -> None:
 # Nova conversão
 async def nova_conversao(update: Update, context: CallbackContext) -> None:
     query = update.callback_query
-    user_data.pop(query.from_user.id, None)  # Limpa os dados armazenados
+    user_data.pop(query.from_user.id, None)
 
     keyboard = [
         [InlineKeyboardButton("Real (BRL)", callback_data='origem-BRL')],
@@ -121,7 +120,6 @@ def main():
     TOKEN = bot_telegram
     app = Application.builder().token(TOKEN).build()
 
-    # Handlers
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CallbackQueryHandler(escolher_moeda_origem, pattern='^origem-(BRL|USD|EUR|GBP|JPY)$'))
     app.add_handler(CallbackQueryHandler(escolher_moeda_destino, pattern='^destino-(BRL|USD|EUR|GBP|JPY)$'))
@@ -129,7 +127,6 @@ def main():
     app.add_handler(CallbackQueryHandler(nova_conversao, pattern='^NOVA_CONVERSAO$'))
     app.add_handler(CallbackQueryHandler(encerrar, pattern='^ENCERRAR$'))
 
-    # Inicia o bot
     app.run_polling()
 
 if __name__ == "__main__":
